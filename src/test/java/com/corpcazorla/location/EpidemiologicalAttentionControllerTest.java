@@ -1,8 +1,8 @@
 package com.corpcazorla.location;
 
-import com.corpcazorla.location.application.model.DataPage;
-import com.corpcazorla.location.application.service.EpidemiologicalAttentionService;
-import com.corpcazorla.location.domain.model.EpidemiologicalAttention;
+import com.corpcazorla.epidemiological.application.model.DataPage;
+import com.corpcazorla.epidemiological.application.service.EpidemiologicalAttentionService;
+import com.corpcazorla.epidemiological.domain.model.EpidemiologicalAttention;
 
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -39,14 +39,20 @@ class EpidemiologicalAttentionControllerTest {
 		DataPage<EpidemiologicalAttention> mockPage = new DataPage<>(List.of(attention), 1);
 
 		when(service.listEpidemiologicalAttention(any())).thenReturn(mockPage);
+		String jsonRequestBody = """
+				{
+					"startDate": "2025-01-01",
+					"endDate": "2025-01-06"
+				}
+				""";
 
 		// =========================
 		// Act + Assert
 		// =========================
 
-		given().contentType("application/json").queryParam("parentId", 1)
+		given().contentType("application/json").body(jsonRequestBody)
 
-				.when().get("/api/v1/epidemiological-attentions")
+				.when().post("/api/v1/epidemiological-attentions/search")
 
 				.then().statusCode(200)
 

@@ -12,12 +12,16 @@ class GreetingResourceTest {
 
     @Test
     void testListEpidemiologicalAttentionSuccess() {
-
+		String jsonRequestBody = """
+				{
+					"startDate": "2025-01-01",
+					"endDate": "2025-01-06"
+				}
+				""";
         given()
-            .queryParam("parentId", 1)
-
+            .contentType("application/json").body(jsonRequestBody)
         .when()
-            .get("/api/v1/epidemiological-attentions")
+            .post("/api/v1/epidemiological-attentions/search")
 
         .then()
             .statusCode(200)
@@ -33,13 +37,17 @@ class GreetingResourceTest {
             .body("meta", notNullValue());
     }
 
-	/*
-	 * @Test void testListAdministrativeDivisionInvalidParentId() {
-	 * 
-	 * given() .queryParam("parentId", "abc")
-	 * 
-	 * .when() .get("/api/locations/administrative-divisions")
-	 * 
-	 * .then() .statusCode(400); }
-	 */
+	
+	  @Test void testListEpidemiologicalAttentionInvalid() {
+	  		String jsonRequestBody = """
+				{
+					"endDate": "2025-01-06"
+				}
+				""";
+	  given() .contentType("application/json").body(jsonRequestBody)
+	  
+	  .when() .post("/api/locations/administrative-divisions/search")
+	  
+	  .then() .statusCode(400); }
+	 
 }
