@@ -1,1 +1,1 @@
-# epidemiological-attentions-service
+# epidemiological-medications-service

@@ -1,8 +1,8 @@
 package com.corpcazorla.location;
 
 import com.corpcazorla.epidemiological.application.model.DataPage;
-import com.corpcazorla.epidemiological.application.service.EpidemiologicalAttentionService;
-import com.corpcazorla.epidemiological.domain.model.EpidemiologicalAttention;
+import com.corpcazorla.epidemiological.application.service.EpidemiologicalMedicationsService;
+import com.corpcazorla.epidemiological.domain.model.EpidemiologicalMedications;
 
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -17,10 +17,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @QuarkusTest
-class EpidemiologicalAttentionControllerTest {
+class EpidemiologicalMedicationsControllerTest {
 
 	@InjectMock
-	EpidemiologicalAttentionService service;
+	EpidemiologicalMedicationsService service;
 
 	@Test
 	void testListAdministrativeDivisionsSuccess() {
@@ -28,7 +28,7 @@ class EpidemiologicalAttentionControllerTest {
 		// Arrange
 		// =========================
 
-		EpidemiologicalAttention attention = new EpidemiologicalAttention();
+		EpidemiologicalMedications attention = new EpidemiologicalMedications();
 
 		attention.setConsultationDate("2025-06-19");
 		attention.setCodeOA("0001251152");
@@ -36,7 +36,7 @@ class EpidemiologicalAttentionControllerTest {
 		attention.setPatientName("BUSTAMANTE FONSECA , LUCAS SANTIAGO");
 		attention.setIdentityDocument("93698456");
 
-		DataPage<EpidemiologicalAttention> mockPage = new DataPage<>(List.of(attention), 1);
+		DataPage<EpidemiologicalMedications> mockPage = new DataPage<>(List.of(attention), 1);
 
 		when(service.listEpidemiologicalAttention(any())).thenReturn(mockPage);
 		String jsonRequestBody = """

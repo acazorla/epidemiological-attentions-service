@@ -1,6 +1,6 @@
 package com.corpcazorla.epidemiological.application.model;
 import java.time.LocalDate;
-public class SearchAttentionQuery {
+public class SearchMedicationsQuery {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	public LocalDate getStartDate() {
