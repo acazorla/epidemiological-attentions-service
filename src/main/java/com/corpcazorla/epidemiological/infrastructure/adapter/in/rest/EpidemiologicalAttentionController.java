@@ -35,7 +35,7 @@ public class EpidemiologicalAttentionController {
     private final EpidemiologicalAttentionResponseMapper responseMapper;
     private final EpidemiologicalAttentionRequestMapper requestMapper;
     private final String apiVersion;
- // Inyección por constructor: Limpio, seguro y sin errores de Sonar
+
     public EpidemiologicalAttentionController(EpidemiologicalAttentionService service, EpidemiologicalAttentionRequestMapper requestMapper,EpidemiologicalAttentionResponseMapper responseMapper,@ConfigProperty(name = "proyecto.api.version") String apiVersion) {
         this.service = service;
         this.requestMapper = requestMapper;

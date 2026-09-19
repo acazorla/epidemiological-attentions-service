@@ -46,7 +46,7 @@ class GreetingResourceTest {
 				""";
 	  given() .contentType("application/json").body(jsonRequestBody)
 	  
-	  .when() .post("/api/locations/administrative-divisions/search")
+	  .when() .post("/api/v1/epidemiological-attentions/search")
 	  
 	  .then() .statusCode(400); }
 	 
