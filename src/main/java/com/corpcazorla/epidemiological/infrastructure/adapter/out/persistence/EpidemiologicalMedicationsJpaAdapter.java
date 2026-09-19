@@ -1,10 +1,10 @@
 package com.corpcazorla.epidemiological.infrastructure.adapter.out.persistence;
 
 import com.corpcazorla.epidemiological.application.model.DataPage;
-import com.corpcazorla.epidemiological.application.model.SearchAttentionQuery;
-import com.corpcazorla.epidemiological.domain.model.EpidemiologicalAttention;
-import com.corpcazorla.epidemiological.domain.ports.out.EpidemiologicalAttentionRepository;
-import com.corpcazorla.epidemiological.infrastructure.adapter.out.persistence.mapper.EpidemiologicalAttentionPersistenceMapper;
+import com.corpcazorla.epidemiological.application.model.SearchMedicationsQuery;
+import com.corpcazorla.epidemiological.domain.model.EpidemiologicalMedications;
+import com.corpcazorla.epidemiological.domain.ports.out.EpidemiologicalMedicationsRepository;
+import com.corpcazorla.epidemiological.infrastructure.adapter.out.persistence.mapper.EpidemiologicalMedicationsPersistenceMapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Default;
@@ -17,19 +17,19 @@ import java.util.List;
 @ApplicationScoped
 @Default // Asegura que este sea el principal
 @jakarta.annotation.Priority(10) // Un número alto le da más importancia que al Mock
-public class EpidemiologicalAttentionJpaAdapter implements EpidemiologicalAttentionRepository {
+public class EpidemiologicalMedicationsJpaAdapter implements EpidemiologicalMedicationsRepository {
 
     private final EntityManager entityManager;
-    private final EpidemiologicalAttentionPersistenceMapper mapper;
+    private final EpidemiologicalMedicationsPersistenceMapper mapper;
 
-    public EpidemiologicalAttentionJpaAdapter(EntityManager entityManager, EpidemiologicalAttentionPersistenceMapper mapper) {
+    public EpidemiologicalMedicationsJpaAdapter(EntityManager entityManager, EpidemiologicalMedicationsPersistenceMapper mapper) {
         this.entityManager = entityManager;
         this.mapper = mapper;
     }
 
     @Override
     @Transactional // Asegura la gestión de la transacción
-    public DataPage<EpidemiologicalAttention> listEpidemiologicalAttentionRepository(SearchAttentionQuery request) {
+    public DataPage<EpidemiologicalMedications> listEpidemiologicalAttentionRepository(SearchMedicationsQuery request) {
     	try {
     		// 1. Definición de la consulta nativa
             Query query = entityManager.createNativeQuery("EXEC epidemiological.usp_get_epidemiological_attention_report :startDate,:endDate");

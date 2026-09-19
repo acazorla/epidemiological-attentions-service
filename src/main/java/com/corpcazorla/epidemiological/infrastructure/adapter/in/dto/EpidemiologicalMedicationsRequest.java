@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public class EpidemiologicalAttentionRequest {
+public class EpidemiologicalMedicationsRequest {
 	@NotBlank(message = "startDate no puede estar vacío")
 	@Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Formato de startDate debe ser YYYY-MM-DD")
 	private String startDate;

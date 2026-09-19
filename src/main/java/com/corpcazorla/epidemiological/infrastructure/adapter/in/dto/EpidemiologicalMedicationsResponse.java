@@ -1,8 +1,8 @@
-package com.corpcazorla.epidemiological.domain.model;
+package com.corpcazorla.epidemiological.infrastructure.adapter.in.dto;
 
-public class EpidemiologicalAttention {
-
-	private String consultationDate;
+public class EpidemiologicalMedicationsResponse {
+    
+    private String consultationDate;
     private String codeOA;
     private String medicalRecordCode;
     private String patientName;
@@ -16,7 +16,7 @@ public class EpidemiologicalAttention {
     private String diagnosisType;
     private String careType;
     private String birthDate;
-    
+	
 	public String getConsultationDate() {
 		return consultationDate;
 	}
@@ -102,5 +102,6 @@ public class EpidemiologicalAttention {
 		this.birthDate = birthDate;
 	}
 	
-    
+	
+
 }

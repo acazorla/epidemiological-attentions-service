@@ -1,9 +1,9 @@
 package com.corpcazorla.epidemiological.infrastructure.adapter.in.rest;
 
-import com.corpcazorla.epidemiological.application.service.EpidemiologicalAttentionService;
+import com.corpcazorla.epidemiological.application.service.EpidemiologicalMedicationsService;
 import com.corpcazorla.epidemiological.infrastructure.adapter.in.dto.*;
-import com.corpcazorla.epidemiological.infrastructure.adapter.in.mapper.EpidemiologicalAttentionRequestMapper;
-import com.corpcazorla.epidemiological.infrastructure.adapter.in.mapper.EpidemiologicalAttentionResponseMapper;
+import com.corpcazorla.epidemiological.infrastructure.adapter.in.mapper.EpidemiologicalMedicationsRequestMapper;
+import com.corpcazorla.epidemiological.infrastructure.adapter.in.mapper.EpidemiologicalMedicationsResponseMapper;
 import com.corpcazorla.epidemiological.infrastructure.adapter.in.util.MetaBuilder;
 
 import jakarta.ws.rs.Consumes;
@@ -23,20 +23,24 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("/api/v1/epidemiological-attentions")
-@Tag(name = "epidemiological attentions", description = "List of epidemiological attentions")
+@Path("/api/v1/epidemiological-medications")
+@Tag(name = "epidemiological medications", description = "List of epidemiological medications")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class EpidemiologicalAttentionController {
+public class EpidemiologicalMedicationsController {
 	@Context
 	ContainerRequestContext requestContext;
 	
-    private final EpidemiologicalAttentionService service;
-    private final EpidemiologicalAttentionResponseMapper responseMapper;
-    private final EpidemiologicalAttentionRequestMapper requestMapper;
+    private final EpidemiologicalMedicationsService service;
+    private final EpidemiologicalMedicationsResponseMapper responseMapper;
+    private final EpidemiologicalMedicationsRequestMapper requestMapper;
     private final String apiVersion;
 
+<<<<<<< HEAD:src/main/java/com/corpcazorla/epidemiological/infrastructure/adapter/in/rest/EpidemiologicalAttentionController.java
     public EpidemiologicalAttentionController(EpidemiologicalAttentionService service, EpidemiologicalAttentionRequestMapper requestMapper,EpidemiologicalAttentionResponseMapper responseMapper,@ConfigProperty(name = "proyecto.api.version") String apiVersion) {
+=======
+    public EpidemiologicalMedicationsController(EpidemiologicalMedicationsService service, EpidemiologicalMedicationsRequestMapper requestMapper,EpidemiologicalMedicationsResponseMapper responseMapper,@ConfigProperty(name = "proyecto.api.version") String apiVersion) {
+>>>>>>> 24ed2c5ffdfc28e5e91c273a548fca7294e8ce23:src/main/java/com/corpcazorla/epidemiological/infrastructure/adapter/in/rest/EpidemiologicalMedicationsController.java
         this.service = service;
         this.requestMapper = requestMapper;
         this.responseMapper = responseMapper;
@@ -49,10 +53,10 @@ public class EpidemiologicalAttentionController {
     @APIResponse(responseCode = "200", description = "Lista obtenida con éxito")
     @APIResponse(responseCode = "400", description = "Invalid request")
     @APIResponse(responseCode = "500", description = "Error interno del servidor")
-    public Response listEpidemiologicalAttention(@Valid EpidemiologicalAttentionRequest request) {
+    public Response listEpidemiologicalAttention(@Valid EpidemiologicalMedicationsRequest request) {
     	
     	var result = service.listEpidemiologicalAttention(requestMapper.toQuery(request));
-        List<EpidemiologicalAttentionResponse> data = responseMapper.toResponseList(result.getData());
+        List<EpidemiologicalMedicationsResponse> data = responseMapper.toResponseList(result.getData());
         Pagination pagination = Pagination.of(result.getTotalElements());
         Meta meta = MetaBuilder.build(requestContext, apiVersion, pagination);
         return Response.ok(new ApiResponse<>(data, meta)).build();

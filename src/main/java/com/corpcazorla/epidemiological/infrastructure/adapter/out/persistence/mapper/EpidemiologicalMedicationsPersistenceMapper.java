@@ -2,7 +2,7 @@ package com.corpcazorla.epidemiological.infrastructure.adapter.out.persistence.m
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import com.corpcazorla.epidemiological.domain.model.EpidemiologicalAttention;
+import com.corpcazorla.epidemiological.domain.model.EpidemiologicalMedications;
 import com.corpcazorla.epidemiological.infrastructure.adapter.in.dto.*;
 
 import java.util.Collections;
@@ -10,16 +10,16 @@ import java.util.List;
 
 
 @ApplicationScoped
-public class EpidemiologicalAttentionPersistenceMapper {
+public class EpidemiologicalMedicationsPersistenceMapper {
 
 	// MÉTODO: Convierte Dominio -> DTO de Respuesta
-	public List<EpidemiologicalAttentionResponse> toResponseList(List<EpidemiologicalAttention> epidemiologicalAttention) {
+	public List<EpidemiologicalMedicationsResponse> toResponseList(List<EpidemiologicalMedications> epidemiologicalAttention) {
 		return epidemiologicalAttention.stream().map(this::toResponse).toList();
 	}
 
-	public EpidemiologicalAttentionResponse toResponse(EpidemiologicalAttention epidemiologicalAttention) {
+	public EpidemiologicalMedicationsResponse toResponse(EpidemiologicalMedications epidemiologicalAttention) {
 		
-		EpidemiologicalAttentionResponse dto = new EpidemiologicalAttentionResponse();
+		EpidemiologicalMedicationsResponse dto = new EpidemiologicalMedicationsResponse();
 		
 		dto.setConsultationDate(epidemiologicalAttention.getConsultationDate());
 		dto.setCodeOA(epidemiologicalAttention.getCodeOA());
@@ -39,7 +39,7 @@ public class EpidemiologicalAttentionPersistenceMapper {
 		return dto;
 	}
 
-    public List<EpidemiologicalAttention> fromRows(List<Object[]> rows) {
+    public List<EpidemiologicalMedications> fromRows(List<Object[]> rows) {
 
         if (rows == null || rows.isEmpty()) {
             return Collections.emptyList();
@@ -49,9 +49,9 @@ public class EpidemiologicalAttentionPersistenceMapper {
                 .map(this::mapRow)
                 .toList();
     }
-    private EpidemiologicalAttention mapRow(Object[] row) {
+    private EpidemiologicalMedications mapRow(Object[] row) {
 
-        EpidemiologicalAttention attention = new EpidemiologicalAttention();
+        EpidemiologicalMedications attention = new EpidemiologicalMedications();
 
         attention.setConsultationDate(getString(row, 0));
         attention.setCodeOA(getString(row, 1));
